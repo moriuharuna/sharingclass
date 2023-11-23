@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('condition');
             $table->string('price');
+            $table->text('supplementaly_information');
             $table->foreignId('department_id')->constrained();
             $table->timestamps();
            

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -12,9 +13,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
-        return view('index');
+        return view('posts.index')->with(['posts' => $post->get()]);
     }
 
     /**
@@ -24,7 +25,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
+        return view('texts.create');
     }
 
     /**
@@ -33,9 +35,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $input = $request['post'];
+        $input += ['user_id'=>Auth::id()];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
 
     /**
