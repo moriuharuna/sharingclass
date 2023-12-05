@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Textbook;
 
 class PostController extends Controller
 {
@@ -26,7 +27,7 @@ class PostController extends Controller
     public function create()
     {
         return view('posts.create');
-        return view('texts.create');
+        // return view('texts.create');
     }
 
     /**
@@ -35,11 +36,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(Request $request, Post $post, Textbook $textbook)
     {
-        $input = $request['post'];
-        $input += ['user_id'=>Auth::id()];
-        $post->fill($input)->save();
+        $input_post = $request['post'];
+        $input_post += ['user_id' => Auth::id()];
+        $post->fill($input_post)->save();
+        
+        $input_textbook = $request['textbook'];
+        $input_textbook += ['post_id' => $post->id];
+        $input_textbook += ['department_id' => Auth::user()->department_id];
+        $textbook->fill($input_textbook)->save(); 
         return redirect('/posts/' . $post->id);
     }
 
@@ -51,7 +57,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show')->with(['post' => $post]);
     }
 
     /**
@@ -62,7 +68,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit')->with(['post' => $post]);
     }
 
     /**
@@ -74,7 +80,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $input_post = $request['post'];
+    $post->fill($input_post)->save();
+
+    return redirect('/posts/' . $post->id);
     }
 
     /**
@@ -86,5 +95,11 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+    
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return redirect('/');
     }
 }

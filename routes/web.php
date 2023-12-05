@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TextbookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,16 @@ Route::middleware('auth')->group(function () {
     
     
     Route::get('/', [PostController::class, 'index'])->name('post.index');
+    Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+    Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
+    
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
+    Route::put('/posts/{post}', [PostController::class, 'update']);
+    Route::get('/posts/{{ $post->id }}/edit', [Postcontroller::class, 'edit']);
+    Route::delete('/posts/{post}', [PostController::class,'delete']);
+    
+    Route::get('/texts', [TextbookController::class, 'index'])->name('text.index');
 });
 
 require __DIR__.'/auth.php';
