@@ -18,7 +18,6 @@ class PostSeeder extends Seeder
     {
         DB::table('posts')->insert([
                 'user_id'=>1,
-                'department_id'=>1,
                 'class_name' => '国際協力論',
                 'teacher' => '佐藤直史',
                 'evaluation' => 'テスト',
@@ -34,7 +33,6 @@ class PostSeeder extends Seeder
          
         DB::table('posts')->insert([
                 'user_id'=>1,
-                'department_id'=>2,
                 'class_name' => 'メディア・コミュニケーション論',
                 'teacher' => '高橋徹',
                 'evaluation' => 'レポート',
@@ -50,7 +48,6 @@ class PostSeeder extends Seeder
         
         DB::table('posts')->insert([
                 'user_id'=>1,
-                'department_id'=>3,
                 'class_name' => '国際組織法',
                 'teacher' => '雨野統',
                 'evaluation' => 'テスト',

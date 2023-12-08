@@ -38,6 +38,39 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+        
+        <!-- 大学入力欄-->
+        <div class="mt-4">
+            <x-input-label for="university" :value="__('University')"/>
+            <select id="university" name="university" class="block mt-1 w-full">
+                <option value="">大学を選択してください</option>
+                @foreach($universities as $university)
+                <option value="{{$university->id}}">{{$university->name}}</option>
+                @endforeach
+            </select>
+        </div>
+        
+        <!--学部入力欄-->
+        <div class="mt-4">
+            <x-input-label for="faculty" :value="__('Faculty')"/>
+            <select id="faculty" name="faculty" class="block mt-1 w-full">
+                <option value="">学部を選択してください</option>
+                @foreach($faculties as $faculty)
+                <option value="{{$faculty->id}}">{{$faculty->name}}</option>
+                @endforeach
+            </select>
+        </div>
+        
+        <!--学科入力欄-->
+        <div class="mt-4">
+            <x-input-label for="department" :value="__('Department')"/>
+            <select id="department" name="department_id" class="block mt-1 w-full">
+                <option value="">学科を選択してください</option>
+                @foreach($departments as $department)
+                <option value="{{$department->id}}">{{$department->name}}</option>
+                @endforeach
+            </select>
+        </div>
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">

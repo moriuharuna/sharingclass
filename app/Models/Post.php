@@ -10,7 +10,15 @@ class Post extends Model
     use HasFactory;
     
     protected $fillable = [
-    'title',
-    'body',
-];
+        'user_id',
+        'class_name',
+        'teacher',
+        'term',
+        'method',
+        'evaluation',
+        'fulfillment',
+        'obtaining_unit_ease',
+        'textbook_presence',
+        'supplementaly_information',
+    ];
 }

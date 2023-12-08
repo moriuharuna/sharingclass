@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('textbooks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('condition');
-            $table->string('price');
-            $table->text('supplementaly_information');
+            $table->integer('condition');
+            $table->integer('price');
+            $table->integer('exchange');
+            $table->text('supplementaly_information')->nullable();
+            $table->foreignId('post_id')->constrained();
             $table->foreignId('department_id')->constrained();
             $table->timestamps();
            
