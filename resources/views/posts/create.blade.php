@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Sharing Class <投稿></h1>
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="授業名">
                 <h2>授業名</h2>
@@ -43,6 +43,9 @@
             <div class="補足情報">
                 <h2>補足情報</h2>
                 <textarea name="post[supplementaly_information]" placeholder="補足情報"></textarea>
+            </div>
+            <div class="images">
+                <input type="file" name="images[]" multiple>
             </div>
             <input type="submit" value="store"/>
         </form>

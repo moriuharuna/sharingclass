@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -27,6 +28,7 @@ class PostController extends Controller
     {
         return view('posts.create');
         return view('texts.create');
+        return view('/posts/create');  //create.blade.phpを表示
     }
 
     /**
@@ -40,6 +42,15 @@ class PostController extends Controller
         $input = $request['post'];
         $input += ['user_id'=>Auth::id()];
         $post->fill($input)->save();
+
+        foreach( $request->file('images') as $file ) {
+          $image_url = Cloudinary::upload($file->getRealPath())->getSecurePath();
+
+          $image = new Image();
+          $image->post_id = $post->id;
+          $image->image_url = $image_url;
+          $image->save();
+        }
         return redirect('/posts/' . $post->id);
     }
 
@@ -48,10 +59,13 @@ class PostController extends Controller
      *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
+     * @params Object Text
+     * @return Reposnse text view
      */
-    public function show(Post $post)
+    public function show(Post $post, Text $text)
     {
-        //
+        return view('/posts/show')->with(['post' => $post]);
+        return view('texts.show')->with(['text' => $post]);
     }
 
     /**
