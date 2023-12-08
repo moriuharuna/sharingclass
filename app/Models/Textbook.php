@@ -17,5 +17,6 @@ class Textbook extends Model
         'condition',
         'supplementaly_information',
         'department_id',
+
     ];
 }

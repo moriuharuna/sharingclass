@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Sharing Class <投稿></h1>
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="class_name">
                 <h2>授業名</h2>
@@ -105,6 +105,9 @@
                     <option value=4>傷や汚れあり</option>
                     <option value=5>全体的に状態が悪い</option>
                 </select>
+            </div>
+            <div class="images">
+                <input type="file" name="images[]" multiple>
             </div>
             <div class="supplementaly_information">
                 <h2>補足情報</h2>

@@ -15,6 +15,9 @@
     <body class="antialiased">
         <h1>Sharing Class <教科書一覧></h1>
         <a href='/posts/create'>create</a>
+        <h2 class='title'>
+            <a href="/texts/{{ $text->id }}">{{ $text->title }}</a>
+        </h2>
         <div class='textbooks'>
             @foreach($textbooks as $textbook)
             <div class='textbooks'>
