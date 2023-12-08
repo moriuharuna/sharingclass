@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('fulfillment');
             $table->string('obtaining_unit_ease');
             $table->integer('textbook_presence');
-            $table->text('supplementaly_information');
+            $table->text('supplementaly_information')->nullable();
             $table->timestamps();
         });
     }

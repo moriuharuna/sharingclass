@@ -17,31 +17,37 @@ class TextbookSeeder extends Seeder
     public function run()
     {
         DB::table('textbooks')->insert([
+                'post_id'=>2,
                 'department_id'=>1,
-                'name' => 'ab',
-                'condition' => '国際協力論',
-                'price' => '佐藤直史',
-                'supplementaly_information'=> 'null',
+                'name' => '国際協力論',
+                'condition' => 1,
+                'price' => 300,
+                'exchange' => 0,
+                'supplementaly_information'=> null,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
          
         DB::table('textbooks')->insert([
                 'department_id'=>2,
-                'name' => 'aaaaaa',
-                'condition' => 'uuuuu',
-                'price' => 'yyyyy',
-                'supplementaly_information'=> 'null',
+                'post_id'=>1,
+                'name' => '金融論',
+                'condition' => 4,
+                'price' => 500,
+                'exchange' => 0,
+                'supplementaly_information'=> null,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
         ]);
         
         DB::table('textbooks')->insert([
                 'department_id'=>3,
-                'name' => 'jjjjjj',
-                'condition' => '777777',
-                'price' => 'kkkkk',
-                'supplementaly_information'=> 'null',
+                'post_id'=>3,
+                'name' => 'ミクロ経済学',
+                'condition' => 3,
+                'price' => 800,
+                'exchange' => 1,
+                'supplementaly_information'=> null,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);

@@ -853,5 +853,12 @@ class FacultySeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
+         
+        DB::table('faculties')->insert([
+                'university_id'=>11,
+                'name' => 'その他',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);
     }
 }
